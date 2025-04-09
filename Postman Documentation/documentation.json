@@ -1,0 +1,164 @@
+{
+    "info": {
+      "_postman_id": "a2fbbf60-d0e7-4bfc-bc42-1234567890ab",
+      "name": "IMF Gadget API",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "description": "Postman collection to test all endpoints for the IMF Gadget API. After login or register, copy the returned token and set it in the {{token}} variable to test protected routes."
+    },
+    "item": [
+      {
+        "name": "Register",
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"username\": \"agent001\",\n  \"password\": \"mission123\"\n}",
+            "options": { "raw": { "language": "json" } }
+          },
+          "url": {
+            "raw": "http://localhost:5000/register",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5000",
+            "path": ["register"]
+          }
+        }
+      },
+      {
+        "name": "Login",
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"username\": \"agent001\",\n  \"password\": \"mission123\"\n}",
+            "options": { "raw": { "language": "json" } }
+          },
+          "url": {
+            "raw": "http://localhost:5000/login",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5000",
+            "path": ["login"]
+          }
+        }
+      },
+      {
+        "name": "Get All Gadgets",
+        "request": {
+          "method": "GET",
+          "header": [
+            { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+          ],
+          "url": {
+            "raw": "http://localhost:5000/gadgets",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5000",
+            "path": ["gadgets"]
+          }
+        }
+      },
+      {
+        "name": "Filter Gadgets by Status",
+        "request": {
+          "method": "GET",
+          "header": [
+            { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+          ],
+          "url": {
+            "raw": "http://localhost:5000/gadgets?status=Deployed",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5000",
+            "path": ["gadgets"],
+            "query": [{ "key": "status", "value": "Deployed" }]
+          }
+        }
+      },
+      {
+        "name": "Create Gadget",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" },
+            { "key": "Content-Type", "value": "application/json", "type": "text" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Invisible Cloak\"\n}",
+            "options": { "raw": { "language": "json" } }
+          },
+          "url": {
+            "raw": "http://localhost:5000/gadgets",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5000",
+            "path": ["gadgets"]
+          }
+        }
+      },
+      {
+        "name": "Update Gadget",
+        "request": {
+          "method": "PATCH",
+          "header": [
+            { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" },
+            { "key": "Content-Type", "value": "application/json", "type": "text" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Laser Pen\",\n  \"status\": \"Deployed\"\n}",
+            "options": { "raw": { "language": "json" } }
+          },
+          "url": {
+            "raw": "http://localhost:5000/gadgets/:id",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5000",
+            "path": ["gadgets", ":id"]
+          }
+        }
+      },
+      {
+        "name": "Decommission Gadget",
+        "request": {
+          "method": "DELETE",
+          "header": [
+            { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+          ],
+          "url": {
+            "raw": "http://localhost:5000/gadgets/:id",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5000",
+            "path": ["gadgets", ":id"]
+          }
+        }
+      },
+      {
+        "name": "Self Destruct Gadget",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+          ],
+          "url": {
+            "raw": "http://localhost:5000/gadgets/:id/self-destruct",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5000",
+            "path": ["gadgets", ":id", "self-destruct"]
+          }
+        }
+      }
+    ],
+    "variable": [
+      {
+        "key": "token",
+        "value": ""
+      }
+    ]
+  }
+  
